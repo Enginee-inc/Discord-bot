@@ -23,9 +23,9 @@ async def on_voice_state_update(member, before, after):
         "event": "entrance",
         "userId": str(member.id),
         "userName": member.name,
-        "channelName": after.channel.name
+        "channelId": str(after.channel.id),
+        "channelName": after.channel.name,
       }
-      print(entranceInfo)
       response = sendRequest.PostToSpreadSheet(entranceInfo)
       print(response)
 
@@ -36,7 +36,8 @@ async def on_voice_state_update(member, before, after):
         "event": "exit",
         "userId": str(member.id),
         "userName": member.name,
-        "channelName": before.channel.name
+        "channelId": str(before.channel.id),
+        "channelName": before.channel.name,
       }
       response = sendRequest.PostToSpreadSheet(exitInfo)
       print(response)
