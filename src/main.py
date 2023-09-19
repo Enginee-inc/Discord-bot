@@ -17,7 +17,7 @@ async def on_voice_state_update(member, before, after):
   if before != after:
 
     #入室の場合
-    if after.channel is not None:
+    if (before.channel is None) and (after.channel is not None):
       entranceInfo = {
         "timestamp": time(),
         "event": "entrance",
@@ -30,7 +30,7 @@ async def on_voice_state_update(member, before, after):
       print(response)
 
     #退出の場合
-    if before.channel is not None:
+    if (before.channel is not None) and (after.channel is None):
       exitInfo = {
         "timestamp": time(),
         "event": "exit",
