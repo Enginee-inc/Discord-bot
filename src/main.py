@@ -4,7 +4,6 @@ import os
 import sendRequest 
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import threading
-import datetime
 import time
 
 load_dotenv()
@@ -24,7 +23,6 @@ class MyHandler(BaseHTTPRequestHandler):
 httpd = ThreadingHTTPServer((ADDRESS, PORT), MyHandler)
 
 intents = discord.Intents.default()
-intents.message_content = True
 
 client = discord.Client(intents=intents)
 token = os.getenv("DISCORD_API_TOKEN")
@@ -59,15 +57,6 @@ async def on_voice_state_update(member, before, after):
     print(response)
 
   return
-
-
-def loop():
-    while(True):
-      print("called")
-      time.sleep(10)
-
-
-
 
 if __name__ == "__main__":
    thread_1 = threading.Thread(target=httpd.serve_forever)
