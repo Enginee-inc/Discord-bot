@@ -33,7 +33,7 @@ async def on_voice_state_update(member, before, after):
   #入室の場合
   if (before.channel is None) and (after.channel is not None):
     entranceInfo = {
-      "timestamp": time.time(),
+      "timestamp": time.time()/60,
       "event": "entrance",
       "userId": str(member.id),
       "userName": member.name,
@@ -46,7 +46,7 @@ async def on_voice_state_update(member, before, after):
   #退出の場合
   if (before.channel is not None) and (after.channel is None):
     exitInfo = {
-      "timestamp": time(),
+      "timestamp": time.time()/60,
       "event": "exit",
       "userId": str(member.id),
       "userName": member.name,
